@@ -2,10 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import { toggleLike, addComment, getComments, getLikeCount } from '../firebase/interactions';
 import { auth } from '../firebase/firebaseConfig';
+import { Post, Comment } from '../types';
 
-export default function PostCard({ post }) {
+interface PostCardProps {
+  post: Post;
+}
+
+export default function PostCard({ post }: PostCardProps) {
   const [comment, setComment] = useState('');
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
